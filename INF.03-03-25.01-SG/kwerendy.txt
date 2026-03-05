@@ -1,0 +1,15 @@
+# Zapytanie 1: wybierające z tabeli imieniny jedynie daty, w których są imieniny Karola
+SELECT data FROM imieniny
+WHERE imiona LIKE "%Karola%";
+
+# Zapytanie 2: wybierające jedynie imiona osób, które obchodzą imieniny 4 maja
+SELECT imiona FROM imieniny
+WHERE data = "05-04";
+
+# Zapytanie 3: obliczające, ile jest dat, w których imieniny obchodzi osoba, której imię zawiera cząstkę mir (np. Miron, Dobromir, Sędzimira)
+SELECT COUNT(data) FROM imieniny
+WHERE imiona LIKE "%mir%";
+
+# Zapytanie 4: dodające do tabeli imieniny pole zyczenia typu napisowego, które pomieści 500 znaków
+ALTER TABLE `imieniny`
+ADD COLUMN `zyczenia` VARCHAR(500);
