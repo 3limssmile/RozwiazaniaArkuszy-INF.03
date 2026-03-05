@@ -1,0 +1,17 @@
+# Zapytanie 1: wybierające jedynie nazwy województw, wszystkie litery w nazwach województw są zamienione na małe
+SELECT LOWER(nazwa) FROM wojewodztwa;
+
+# obliczające liczbę miast dla których id_wojewodztwa jest równe jeden
+SELECT COUNT(nazwa) FROM miasta
+WHERE id_wojewodztwa = 1;
+
+# Zapytanie 3: wybierające jedynie nazwy miast zaczynające się od cząstki „Lu” i odpowiadające im nazwy województw, posortowane alfabetycznie po nazwie miasta. Należy posłużyć się relacją
+SELECT m.nazwa, w.nazwa FROM miasta m
+JOIN wojewodztwa w ON w.id = m.id_wojewodztwa
+WHERE m.nazwa LIKE "Lu%"
+ORDER BY m.nazwa ASC;
+
+# Zapytanie 4: wybierające jedynie nazwy województw i odpowiadającą im liczbę miast, które się w nich znajdują. Kolumna z liczbą miast powinna mieć nadany (alias) „Liczba miast”. Należy posłużyć się relacją
+SELECT w.nazwa, COUNT(m.nazwa) AS "Liczba miast" FROM wojewodztwa w
+JOIN miasta m ON w.id = m.id_wojewodztwa
+GROUP BY w.nazwa;
