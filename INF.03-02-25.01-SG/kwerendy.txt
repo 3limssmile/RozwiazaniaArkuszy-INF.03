@@ -1,0 +1,17 @@
+# Zapytanie 1: wybierające jedynie imiona i nazwiska osób, których imiona rozpoczynają się od litery A
+SELECT imie, nazwisko FROM osoby
+WHERE imie LIKE "A%";
+
+# Zapytanie 2: wybierające jedynie nazwy zadań (pole zadanie) i daty, w których w nazwie zadania zawiera się słowo „mebli”, posortowane rosnąco według daty
+SELECT zadanie, data FROM zadania
+WHERE zadanie LIKE "%mebli%"
+ORDER BY data ASC;
+
+# Zapytanie 3: wybierające jedynie pogrupowane nazwiska osób i odpowiadającą im liczbę zadań. Kolumnie z liczbą zadań należy nadać nazwę (alias) „Liczba zadań”. Należy posłużyć się relacją
+SELECT o.nazwisko, COUNT(z.id_zadania) AS "Liczba zadań" FROM osoby o
+JOIN zadania z ON z.osoba_id = o.id_osoba
+GROUP BY o.nazwisko;
+
+# Zapytanie 4: usuwające kolumnę telefon z tabeli osoby
+ALTER TABLE `osoby`
+DROP COLUMN `telefon`;
